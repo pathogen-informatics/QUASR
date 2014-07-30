@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="quasr" default="compress2" basedir=".">
+<project name="quasr" default="compressBin" basedir=".">
   <target name="init">
     <property name="sourceDir" value="src" />
     <property name="ccli" value="commons-cli-1.2.jar" />
@@ -24,7 +24,7 @@
     <copy file="${ccli}" tofile="${libDir}/${ccli}"/>
   </target>
 
-  <target name="compile1" depends="clean">
+  <target name="compileLib" depends="clean">
     <javac
        srcdir="${sourceDir}"
        destdir="${classLib}">
@@ -34,11 +34,11 @@
   </javac>
   </target>
 
-  <target name="compress1" depends="compile1">
+  <target name="compressLib" depends="compileLib">
     <jar destfile="${qlib}" basedir="${classLib}" />
   </target>
 
-  <target name="compile2" depends="compress1">
+  <target name="compileBin" depends="compressLib">
     <javac
        srcdir="src/uk/ac/sanger/quasr/processing"
        destdir="${classBin}">
@@ -50,7 +50,7 @@
   </javac>
   </target>
 
-  <target name="compress2" depends="compile2">
+  <target name="compressBin" depends="compileBin">
     <jar destfile="${rjar}" basedir="${classBin}">
     <manifest>
       <attribute name="Main-Class" value="ReadsetProcessor.ReadsetProcessor"/>
