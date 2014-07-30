@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="quasr" default="compress" basedir=".">
+  <target name="init">
+    <property name="sourceDir" value="src" />
+    <property name="buildDir" value="build" />
+    <property name="classDir" value="build/classes" />
+    <property name="distDir" value="../quasr_dist" />
+    <property name="libDir" value="${distDir}/lib" />
+    <property name="qjar" value="${libDir}/QUASR.jar" />
+    <property name="rjar" value="${distDir}/ReadsetProcessor.jar" />
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${buildDir}"  />
+    <delete dir="${distDir}"   />
+    <mkdir dir="${buildDir}"   />
+    <mkdir dir="${classDir}"   />
+    <mkdir dir="${distDir}"    />
+    <mkdir dir="${libDir}"     />
+  </target>
+  <target name="compile" depends="clean">
+    <javac
+       srcdir="${sourceDir}"
+       destdir="${classDir}">
+       <compilerarg value="-Xlint"/>
+  </javac>
+  </target>
+  <target name="compress" depends="compile">
+    <jar destfile="${qjar}" basedir="${classDir}" />
+    <jar destfile="${rjar}" basedir="${buildDir}" />
+  </target>
+</project>
+
