@@ -1,33 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="quasr" default="compress" basedir=".">
+<project name="quasr" default="compress2" basedir=".">
   <target name="init">
     <property name="sourceDir" value="src" />
+    <property name="ccli" value="commons-cli-1.2.jar" />
     <property name="buildDir" value="build" />
-    <property name="classDir" value="build/classes" />
+    <property name="readsetDir" value="build/readsetProcessor" />
+    <property name="classLib" value="build/classes_lib" />
+    <property name="classBin" value="build/classes_bin" />
     <property name="distDir" value="../quasr_dist" />
     <property name="libDir" value="${distDir}/lib" />
-    <property name="qjar" value="${libDir}/QUASR.jar" />
-    <property name="rjar" value="${distDir}/ReadsetProcessor.jar" />
+    <property name="qlib" value="${libDir}/QUASRLibrary.jar" />
+    <property name="rjar" value="${distDir}/readsetProcessor.jar" />
   </target>
 
   <target name="clean" depends="init">
     <delete dir="${buildDir}"  />
     <delete dir="${distDir}"   />
     <mkdir dir="${buildDir}"   />
-    <mkdir dir="${classDir}"   />
+    <mkdir dir="${classLib}"   />
+    <mkdir dir="${classBin}"   />
     <mkdir dir="${distDir}"    />
     <mkdir dir="${libDir}"     />
+    <copy file="${ccli}" tofile="${libDir}/${ccli}"/>
   </target>
-  <target name="compile" depends="clean">
+
+  <target name="compile1" depends="clean">
     <javac
        srcdir="${sourceDir}"
-       destdir="${classDir}">
+       destdir="${classLib}">
        <compilerarg value="-Xlint"/>
+       <include name="**/*.java"/>
+       <exclude name="**/ReadsetProcessor.java"/>
   </javac>
   </target>
-  <target name="compress" depends="compile">
-    <jar destfile="${qjar}" basedir="${classDir}" />
-    <jar destfile="${rjar}" basedir="${buildDir}" />
+
+  <target name="compress1" depends="compile1">
+    <jar destfile="${qlib}" basedir="${classLib}" />
+  </target>
+
+  <target name="compile2" depends="compress1">
+    <javac
+       srcdir="src/uk/ac/sanger/quasr/processing"
+       destdir="${classBin}">
+      <classpath>
+	<pathelement location="${qlib}"/>
+	<pathelement location="${libDir}/${ccli}"/>
+      </classpath>
+      <compilerarg value="-Xlint"/>
+  </javac>
+  </target>
+
+  <target name="compress2" depends="compile2">
+    <jar destfile="${rjar}" basedir="${classBin}">
+    <manifest>
+      <attribute name="Main-Class" value="ReadsetProcessor.ReadsetProcessor"/>
+      <attribute name="Class-Path" value="lib/QUASRLibrary.jar lib/commons-cli-1.2.jar"/>
+    </manifest>
+    </jar>
   </target>
 </project>
 

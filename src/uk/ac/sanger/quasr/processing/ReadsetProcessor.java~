@@ -1,4 +1,4 @@
-package uk.ac.sanger.processing;
+package readsetProcessor;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
