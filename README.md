@@ -25,13 +25,13 @@ USAGE
 
 -v/--version	Print version number
 
--i/--infile	SE or single-PE FASTQ (or GZIPed FASTQ) or SFF ***\****
+***\****   -i/--infile	SE or single-PE FASTQ (or GZIPed FASTQ) or SFF
 
 -r/--reverse	FASTQ (or GZIPed FASTQ) or SFF containing reverse mates
 
 -2/--paired	Input file is paired-end. Only necessary if 1 file parsed
 
--o/--outprefix	Output directory and file prefix ***\****
+***\****   -o/--outprefix	Output directory and file prefix
 
 -z/--gzip	Compress output files to GZIPed FASTQ
 
@@ -44,13 +44,13 @@ Demultiplex:
 
 -M/--mids	Comma-separated MIDs to be parsed. Accepts ranges
 
--s/--sequence	Demultiplex by parsing sequence. Mutually-exlusive with -d ***\+***
+***\+***   -s/--sequence	Demultiplex by parsing sequence. Mutually-exlusive with -d
 
 -c/--custom	File containing custom MID sequences. Only allowed with -s
 
 -O/--offset	Maximum offset MID can be within a read. Only allowed with -s [default: 10]
 
--H/--header	Demultiplex by parsing header. Mutually exclusive with -s ***\+***
+***\+***   -H/--header	Demultiplex by parsing header. Mutually exclusive with -s
 
 -P/--pattern	Regex to match in header. Only allowed with -d [default: "#(\d+)/\d$"]
 
