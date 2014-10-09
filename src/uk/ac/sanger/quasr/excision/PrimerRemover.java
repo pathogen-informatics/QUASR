@@ -78,7 +78,7 @@ public class PrimerRemover extends AbstractSequenceRemover implements PreAssembl
             substringCounts.put(matches[0].group(), count + 1);
         }
         if (matches[1] == null) {
-            end = record.getLength() - 1;
+            end = record.getLength();
         } else {
             int numGroups = matches[1].groupCount();
             end = matches[1].start(numGroups);
