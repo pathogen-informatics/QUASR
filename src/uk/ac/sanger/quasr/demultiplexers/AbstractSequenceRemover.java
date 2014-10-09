@@ -38,15 +38,23 @@ public abstract class AbstractSequenceRemover {
     
     protected Matcher[] matchSubstringInRecord(String seq) {
         Matcher[] matches = new Matcher[2];
-        boolean matchFound = false;
+        //boolean matchFound = false;
         for (int i=0; i<fSubstrings.size(); i++) {
             Pattern fPat = fSubstrings.get(i);
             Pattern rPat = rSubstrings.get(i);
             if (fPat != null) {
                 Matcher fMatch = fPat.matcher(seq);
                 if (fMatch.find() && (fMatch.start()+1) <= leeway) {
-                    matches[0] = fMatch;
-                    matchFound = true;
+                    if (matches[0] != null) {
+                        if (fMatch.start() > matches[0].start()) {
+                            matches[0] = fMatch;
+                            //matchFound = true;
+                        }
+                    }
+                    else {
+                        matches[0] = fMatch;
+                        //matchFound = true;
+                    }
                 }
             }
             if (rPat != null) {
@@ -54,14 +62,24 @@ public abstract class AbstractSequenceRemover {
                 if (rMatch.find()) {
                     int numGroups = rMatch.groupCount();
                     if (seq.length() - (rMatch.end(numGroups)+1) <= leeway) {
-                        matches[1] = rMatch;
-                        matchFound = true;
+                        if (matches[1] != null) {
+                            if (rMatch.start() > matches[1].start()) {
+                                matches[1] = rMatch;
+                                //matchFound = true;
+                            }
+                        }
+                        else {
+                            matches[1] = rMatch;
+                            //matchFound = true;
+                        }
                     }
                 }
             }
+            /**
             if (matchFound == true) {
                 break;
             }
+            */
         }
         return matches;
     }
