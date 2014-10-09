@@ -21,6 +21,26 @@ public class ReadsetProcessorTest
   {
     try{
        check_files_equal("data/no_adapters.fastq","data/expected/no_adapters.qc.fq");
+       check_files_equal("data/adapter_at_end.fastq","data/expected/adapter_at_end.qc.fq");
+       check_files_equal("data/adapter_at_end_3_times.fastq","data/expected/adapter_at_end_3_times.qc.fq");
+       check_files_equal("data/adapter_at_end_one_mismatch.fastq","data/expected/adapter_at_end_one_mismatch.qc.fq");
+       check_files_equal("data/adapter_at_end_three_mismatches.fastq","data/expected/adapter_at_end_three_mismatches.qc.fq");
+       check_files_equal("data/adapter_at_end_two_mismatches.fastq","data/expected/adapter_at_end_two_mismatches.qc.fq");
+       check_files_equal("data/adapter_at_start.fastq","data/expected/adapter_at_start.qc.fq");
+       check_files_equal("data/adapter_at_start_3_times.fastq","data/expected/adapter_at_start_3_times.qc.fq");
+       check_files_equal("data/adapter_at_start_one_mismatch.fastq","data/expected/adapter_at_start_one_mismatch.qc.fq");
+       check_files_equal("data/adapter_at_start_three_mismatches.fastq","data/expected/adapter_at_start_three_mismatches.qc.fq");
+       check_files_equal("data/adapter_at_start_two_mismatches.fastq","data/expected/adapter_at_start_two_mismatches.qc.fq");
+       check_files_equal("data/adapter_in_middle.fastq","data/expected/adapter_in_middle.qc.fq");
+       check_files_equal("data/adapters_at_start_and_end_fwd_rev.fastq","data/expected/adapters_at_start_and_end_fwd_rev.qc.fq");
+       check_files_equal("data/different_adapters_at_end_and_middle_one_mismatch.fastq","data/expected/different_adapters_at_end_and_middle_one_mismatch.qc.fq");
+       check_files_equal("data/different_adapters_at_end_and_middle_two_mismatches.fastq","data/expected/different_adapters_at_end_and_middle_two_mismatches.qc.fq");
+       check_files_equal("data/different_adapters_at_start_and_middle_fwd.fastq","data/expected/different_adapters_at_start_and_middle_fwd.qc.fq");
+       check_files_equal("data/different_adapters_at_start_and_middle_fwd_rev.fastq","data/expected/different_adapters_at_start_and_middle_fwd_rev.qc.fq");
+       check_files_equal("data/different_adapters_at_start_and_middle_one_mismatch.fastq","data/expected/different_adapters_at_start_and_middle_one_mismatch.qc.fq");
+       check_files_equal("data/different_adapters_at_start_and_middle_rev.fastq","data/expected/different_adapters_at_start_and_middle_rev.qc.fq");
+       check_files_equal("data/different_adapters_at_start_and_middle_two_mismatches.fastq","data/expected/different_adapters_at_start_and_middle_two_mismatches.qc.fq");
+       
     }catch (IOException ex) {
       System.out.println(ex.toString());
     }
