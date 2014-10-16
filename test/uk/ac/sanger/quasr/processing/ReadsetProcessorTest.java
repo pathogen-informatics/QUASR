@@ -20,6 +20,7 @@ public class ReadsetProcessorTest
   public void TestPrimerRemovalStart()
   {
     try{
+       check_files_equal("data/adapters_single_base_separate.fastq","data/expected/adapters_single_base_separate.qc.fq");
        check_files_equal("data/no_adapters.fastq","data/expected/no_adapters.qc.fq");
        check_files_equal("data/adapter_at_end.fastq","data/expected/adapter_at_end.qc.fq");
        check_files_equal("data/adapter_at_end_3_times.fastq","data/expected/adapter_at_end_3_times.qc.fq");
