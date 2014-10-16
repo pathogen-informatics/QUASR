@@ -24,6 +24,7 @@
         <!-- Main classes from build -->
     	<pathelement path="${classpath}" />
       <pathelement location="lib"/>
+      <pathelement location="../src"/>
       <pathelement location="lib/junit-4.11.jar" />
       <pathelement location="lib/hamcrest-core-1.3.jar" />
     	<pathelement path="../ant-build/classes/main/" />
